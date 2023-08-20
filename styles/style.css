@@ -3,14 +3,28 @@
     /* border: 1px solid rgb(207, 169, 169) !important; */
 }
 
-.products {
-
+.black-overlay {
+    display: none;
+    width: 100vw;
+    height: 100%;
+    background-color: rgba(17, 17, 17, 0.40);
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    z-index: 999;
 }
 
-.cart  {
-
-}
-
-.banner {
-
+.modal {
+    position: absolute;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    cursor: auto;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
 }

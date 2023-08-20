@@ -449,10 +449,10 @@
                         <div class="p-5 space-y-2 bg-white rounded-md shadow-md mb-5">
                             <h3 class="font-medium text-lg">Have coupon?</h3>
                             <div class="flex flex-row justify-between rounded-lg border border-gray-200">
-                                <input type="text" name="" id="" placeholder="Coupon code"
+                                <input type="text" name=""  id="couponId" placeholder="Coupon code"
                                     class="rounded-lg flex-1 px-4 lg:px-3 py-2 w-[60%] placeholder:text-xs border-0 outline-0   ">
-                                <button
-                                    class="px-4 py-2 text-xs bg-[#E527B2] hover:bg-pink-500 text-white rounded-r-lg">Apply</button>
+                                <button  id="sell200-btn" 
+                                    class="px-4 py-2 text-xs opacity-40 pointer-events-none bg-[#E527B2] hover:bg-pink-500 text-white rounded-r-lg">Apply</button>
                             </div>
                         </div>
                         <div class="p-5 bg-white shadow-md">
@@ -466,29 +466,29 @@
                                     </span>
                                 </li>
                                 <li><span class="font-semibold">Discount: </span>
-                                    <span id="discountId" class="font-semibold text-gray-400">51.40TK
+                                    <span id="discountId" class="font-semibold text-gray-400">00
                                     </span>
                                 </li>
                                 <li><span class="font-semibold">Total: </span>
-                                    <span id="totalPriceId" class="font-semibold text-gray-400">206.51Tk
+                                    <span id="totalPriceId" class="font-semibold text-gray-400">00
                                     </span>
                                 </li>
                             </ul>
                             <div class="bg-gray-700 w-[95%] mx-auto border my-2"></div>
-                            <button id="purchase-btn"
-                                class="font-medium text-white bg-[#E527B2] w-full py-1 text-sm rounded-md hover:bg-pink-500">Make
+                            <button id="purchase-btn" onclick="overlayMessageShow()"
+                                class="font-medium text-white opacity-40 pointer-events-none bg-[#E527B2] w-full py-1 text-sm rounded-md hover:bg-pink-500">Make
                                 Purchase</button>
                         </div>
                     </div>
                 </div>
             </section>
         </main>
-        <div class="black-overlay">
+        <div id="overlayId" class="black-overlay">
             <div class="modal shadow-2xl w-60 h-60 sm:w-80 sm:h-80 lg:w-96 lg:h-96 rounded-lg">
                 <img src="images/congo.png" class="w-24 sm:w-40">
                 <h1 class="font-extrabold text-xl sm:text-3xl text-center text-balck mt-3 mb-2 ">Congratulations</h1>
-                <p class="text-gray-500 font-normal text-xs">Purchase the product</p>
-                <button class="text-white px-3 py-1 rounded-md bg-[#E527B2] hover:bg-pink-600 mt-3 font-semibold">Go
+                <p class="text-gray-500 font-normal text-center text-xs">Congratulation, your payment <br> <span id="ovarlayPayMsg">00</span> BDT is successful.</p>
+                <button onclick="overlayMessageShow()" class="text-white px-3 py-1 rounded-md bg-[#E527B2] hover:bg-pink-600 mt-3 font-semibold">Go
                     Home</button>
             </div>
         </div>

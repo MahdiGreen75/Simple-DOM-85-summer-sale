@@ -16,8 +16,9 @@ function setNumToElement(whereToSet, num) {
 function getNumFromElement(id) {
     const element = document.getElementById(id);
     const str = element.innerText;
-    const num = +parseFloat(str).toFixed(2);
-    return num;
+    const num = +parseFloat(str);
+    const fixedNum = +num.toFixed(2);
+    return fixedNum;
 }
 function clickHandlerProducer(obj) {
     return function () {
@@ -32,7 +33,7 @@ function clickHandlerProducer(obj) {
         //second step: dynamically adding totalPrice 
         const price = getNumFromElement("priceId");
         const netPrice = obj.price + price;
-        const unit = netPrice + " " + "TK"
+        const unit = +netPrice.toFixed(2) + " " + "TK";
         setNumToElement("priceId", unit);
 
         //third step: converts the "Make Purchase" button blur to visible 
@@ -47,13 +48,25 @@ function clickHandlerProducer(obj) {
             sell200Btn.style.opacity = 1;
             sell200Btn.style.pointerEvents = "auto";
         }
+        //Dynamically updating discount and total price.
+        //on first invocation this snippet below shouldn't run.
+        //instead, line 108 should run.
+        // if (++count === 1) {
+        //     const couponId = document.getElementById("couponId");
+        //     if (couponId.value === "SELL200") {
+        //         const price = getNumFromElement("priceId");
+        //         const discount = (price * 20) / 100;
+        //         setNumToElement("discountId", +discount.toFixed(2));
+        //         const total = price - discount;
+        //         setNumToElement("totalPriceId", +total.toFixed(2));
+        //     }
+        // }
     }
 }
 
 /***
  * Separation between handlerProducer and handler's.
  */
-
 const item1 = clickHandlerProducer({
     name: "K. Accessories",
     price: 39.00
@@ -96,9 +109,9 @@ document.getElementById("sell200-btn").addEventListener("click", function (e) {
     if (couponId.value === "SELL200") {
         const price = getNumFromElement("priceId");
         const discount = (price * 20) / 100;
-        setNumToElement("discountId", discount);
+        setNumToElement("discountId", +discount.toFixed(2));
         const total = price - discount;
-        setNumToElement("totalPriceId", total);
+        setNumToElement("totalPriceId", +total.toFixed(2));
     }
 })
 /**
@@ -114,15 +127,25 @@ document.getElementById("sell200-btn").addEventListener("click", function (e) {
 
 
 // Handler for making the overlay visible.
-document.getElementById("purchase-btn").addEventListener("click", function(e) {
+document.getElementById("purchase-btn").addEventListener("click", function (e) {
     let blackOverlay = document.getElementById("overlayId");
     blackOverlay.style.display = "block";
 
-    const num = getNumFromElement("totalPriceId");
-    setNumToElement("ovarlayPayMsg", num);
+    const num1 = +getNumFromElement("totalPriceId").toFixed(2);
+    const num2 = +getNumFromElement("priceId").toFixed(2);
+
+    let overLayPriceMsg;
+    const couponId = document.getElementById("couponId");
+    if (couponId.value === "SELL200") {
+        overLayPriceMsg = num1;
+    } else {
+        overLayPriceMsg = num2;
+    }
+
+    setNumToElement("ovarlayPayMsg", overLayPriceMsg);
 });
 // Handler for making the overlay invisible
-document.getElementById("ovarlayDisableBtn").addEventListener("click", function(e) {
+document.getElementById("ovarlayDisableBtn").addEventListener("click", function (e) {
     let blackOverlay = document.getElementById("overlayId");
     blackOverlay.style.display = "none";
 });

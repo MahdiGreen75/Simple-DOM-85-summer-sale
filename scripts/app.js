@@ -101,12 +101,29 @@ document.getElementById("sell200-btn").addEventListener("click", function (e) {
         setNumToElement("totalPriceId", total);
     }
 })
+/**
+ * A reminder for me: Next time i recheck this project.
+ * I tried to add the overlay feature with onclick = "overlay()"
+ * for countless times. but it didn't worked at all.
+ * Even ChatGPT responded my code is working well.
+ * But, it didn't worded.
+ * Then, i tried the following approach,
+ * it took me 5 minutes to implement it .
+ * it worked immidietley. 
+ */
 
-function overlayMessageShow() {
+
+// Handler for making the overlay visible.
+document.getElementById("purchase-btn").addEventListener("click", function(e) {
     let blackOverlay = document.getElementById("overlayId");
     blackOverlay.style.display = "block";
-    
 
+    const num = getNumFromElement("totalPriceId");
+    setNumToElement("ovarlayPayMsg", num);
+});
+// Handler for making the overlay invisible
+document.getElementById("ovarlayDisableBtn").addEventListener("click", function(e) {
+    let blackOverlay = document.getElementById("overlayId");
+    blackOverlay.style.display = "none";
+});
 
-   
-}
